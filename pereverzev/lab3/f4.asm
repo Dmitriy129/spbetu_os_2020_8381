@@ -10,6 +10,7 @@ Mcbsector db 'h. Sector: $'
 Mcbsize db 'h. Size:        B$'
 LastBytes db '. Information in last bytes: $'
 MemError db 'Memory cannot be allocated.$'
+Endline db 0DH,0AH, '$'
 
 BEGIN:
 		mov ah, 4ah
@@ -91,7 +92,7 @@ last:
 		inc bx
 		cmp bx, 8
 		jl last
-		lea	dx, db 0DH,0AH, '$'
+		lea	dx, Endline
 		call WRITE
 		mov al, es:[00h]
 		cmp al, 5Ah

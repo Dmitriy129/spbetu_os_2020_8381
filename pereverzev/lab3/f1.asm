@@ -9,7 +9,7 @@ Mcbline db 'New MCB:', 0DH,0AH, 'Type: $'
 Mcbsector db 'h. Sector: $'
 Mcbsize db 'h. Size:        B$'
 LastBytes db '. Information in last bytes: $'
-
+Endline db 0DH,0AH, '$'
 BEGIN:
 		mov ah, 4ah
 		mov bx, 0ffffh
@@ -75,7 +75,7 @@ last:
 		inc bx
 		cmp bx, 8
 		jl last
-		lea	dx, db 0DH,0AH, '$'
+		lea	dx, Endline
 		call WRITE
 		mov al, es:[00h]
 		cmp al, 5Ah
