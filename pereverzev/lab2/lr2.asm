@@ -8,6 +8,7 @@ COMMAND_LINE_TAIL			db	'Command line tail: $'
 ENVIRONMENT_CONTENT	 		db	'Environmnt content: $'
 LOAD_PATH					db	'Module load path: $'
 ENDL_LINE					db	0dh, 0ah, '$'
+SPACE                       db	'  $'
 	
 
 BYTE_IN_HEX PROC near
@@ -19,10 +20,10 @@ BYTE_IN_HEX PROC near
 		mov		cl, 4
 		shr		al, cl
 		call	TETR_TO_HEX
-		lea 	si, db	'  $'
+		lea 	si, SPACE
 		mov 	[si], al
 		mov 	[si+1], ah
-		mov 	dx, offset db	'  $'
+		mov 	dx, offset SPACE
 		call 	PRINT_STRING
 		pop 	si
 		pop		cx
